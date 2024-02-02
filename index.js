@@ -20,7 +20,6 @@ app.get('/', (req, res) => {
 })
 
 app.post('/submit', (req, res) => {
-    // console.log(req.body.summonerName);
     res.send("<h1>Your summoner name is:<br> submit ok <br>" + req.body.summonerName);
     getUser(req.body.summonerName);
 })

@@ -10,7 +10,7 @@ var app = express();
 var port = 3000;
 
 var url = 'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/';
-var apikey = 'RGAPI-42322a82-4843-481f-a400-60718182035e';
+var apikey = 'RGAPI-7470ec64-8a81-4245-8b58-3f2b06d27c90';
 var summonerName = '';
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,19 +30,14 @@ app.listen(port, () => {
 })
 
 async function getUser(summonerName) {
-    var config = {
-        params: { "name": summonerName, "X-Riot-Token": apikey },
-    };
+    // var config = {
+    //     params: { "name": summonerName, "X-Riot-Token": apikey },
+    // };
 
+    console.log(url + '/' + summonerName + '?api_key=' + apikey);
 
     try {
-        const response = await axios.get(url, {
-            params:
-            {
-                name: summonerName, api_key: apikey,
-            }
-        }
-        );
+        const response = await axios.get(url + summonerName + '?api_key=' + apikey);
         if (response.status === 200) {
             console.log(response.status);
             console.log(response.data.summonerLevel);
@@ -52,5 +47,6 @@ async function getUser(summonerName) {
     } catch (error) {
         console.error('Errore nella richiesta');
         // console.error(error);
+        return error;
     }
 }

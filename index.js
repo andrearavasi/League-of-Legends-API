@@ -36,8 +36,7 @@ async function getUser(summonerName) {
             console.log(response.status);
             console.log(response.data.summonerLevel);
         }
-        else
-            console.log(response.status);
+        else console.log(response.status);
     } catch (error) {
         console.error('Request error');
         return error;

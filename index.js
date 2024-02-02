@@ -30,12 +30,6 @@ app.listen(port, () => {
 })
 
 async function getUser(summonerName) {
-    // var config = {
-    //     params: { "name": summonerName, "X-Riot-Token": apikey },
-    // };
-
-    console.log(url + '/' + summonerName + '?api_key=' + apikey);
-
     try {
         const response = await axios.get(url + summonerName + '?api_key=' + apikey);
         if (response.status === 200) {
@@ -45,8 +39,7 @@ async function getUser(summonerName) {
         else
             console.log(response.status);
     } catch (error) {
-        console.error('Errore nella richiesta');
-        // console.error(error);
+        console.error('Request error');
         return error;
     }
 }

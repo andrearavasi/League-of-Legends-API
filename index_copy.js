@@ -29,8 +29,20 @@ app.listen(port, () => {
 })
 
 async function getUser(summonerName) {
+    let data = {
+        'summonerName': summonerName
+    }
+    let headers = {
+        'summonerName': summonerName
+    }
+
     try {
-        const response = await axios.get(url + summonerName + '?api_key=' + apikey);
+        const response = await axios.get(
+            url, {
+            data,
+            headers: {}
+        }
+        );
         if (response.status === 200) {
             console.log(response.status);
             console.log(response.data.summonerLevel);

@@ -19,19 +19,19 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 })
 
-app.post('/submit', (req, res) => {
-    res.send("<h1>Your summoner name is:<br> submit ok <br>" + req.body.summonerName);
-    let data = getUser(req.body.summonerName);
-    getEntries(data.id);
+app.post('/submit', async (req, res) => {
+    let data = await getUser(req.body.summonerName, req.body.apiKey);
+    await getEntries(data.id);
+    res.sendFile(__dirname + "/public/data_view.html");
 })
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 })
 
-async function getUser(summonerName) {
+async function getUser(summonerName, apiKey) {
     try {
-        const response = await axios.get(url + summonerName + '?api_key=' + apikey);
+        const response = await axios.get(url + summonerName + '?api_key=' + apiKey);
         if (response.status === 200) {
             console.log(response.status);
             console.log(response.data.summonerLevel); //Expected: 534
@@ -40,7 +40,7 @@ async function getUser(summonerName) {
         }
         else console.log(response.status);
     } catch (error) {
-        console.error('Request error');
+        console.error('Request Name error');
         return error;
     }
 }
@@ -54,7 +54,7 @@ async function getEntries(encryptedId) {
         }
         else console.log(response.status);
     } catch (error) {
-        console.error('Request error');
+        console.error('Request Entries error');
         return error;
     }
 }

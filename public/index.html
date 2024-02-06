@@ -8,14 +8,19 @@
 </head>
 
 <body>
-    <div>
-        <div style="display:flex;flex-direction: row; gap: 5px;">
-            <form action="/submit" method="POST">
-                <input type="text" style="padding: 10px;" name="summonerName" required placeholder="Summoner Name">
-                <input type="submit" value="Cerca"
-                    style="background-color: bisque;width: 100px;height: 50px;border-radius: 20px;">
-            </form>
-        </div>
+    <div style="width: 100%;height: 100%;display: flex;flex-direction: column;align-items: center;">
+        <form action="/submit" method="POST">
+            <div style="display: flex;flex-direction: column;gap: 5px;align-items: center;justify-content: center;">
+                <div>
+                    <input type="text" style="padding: 10px;" name="summonerName" required placeholder="Summoner Name">
+                    <input type="text" style="padding: 10px;" name="apiKey" required placeholder="Api Key">
+                </div>
+                <div>
+                    <input type="submit" value="Cerca"
+                        style="background-color: rgb(245, 192, 59); width: 100px; height: 50px; border-radius: 5px;">
+                </div>
+            </div>
+        </form>
         <div>
             <div>
                 <span></span>
